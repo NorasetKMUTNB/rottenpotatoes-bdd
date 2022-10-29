@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-byebug'
+  gem 'test-unit'
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'  # some pre-fabbed step definitions  
 end
