@@ -17,8 +17,8 @@ module NavigationHelpers
     when /^the movies page$/ then '/movies'
     when /^the home\s?page$/ then '/movies'
     when /^the Create New Movie page/ then '/movies/new' 
+    when /^the "Search Results" page/ then '/movies/new'
       
-
       # Here is an example that uses value from the Regexp:
       #
       #   when /^the details page for movie "(.*)"$/ do |movie_name|
