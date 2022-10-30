@@ -3,21 +3,12 @@
 = form_tag movies_path do
 
   = label :movie, :title, 'Title'
-  = text_field :movie, 'title', value: params[:title]
+  = text_field :movie, 'title'
 
   = label :movie, :rating, 'Rating'
-  - if  params[:adult] == "true"
-    = select :movie, :rating, ['R','PG','PG-13','G','NC-17']
-  - else 
-    = select :movie, :rating, ['G','PG','PG-13','R','NC-17']
+  = select :movie, :rating, ['G','PG','PG-13','R','NC-17']
 
   = label :movie, :release_date, 'Released On'
-  = date_select :movie, :release_date 
+  = date_select :movie, :release_date
 
   = submit_tag 'Save Changes', :class => 'btn btn-primary'
-
-%br
-%p= "Title : #{params[:title]}" 
-%p= "Adult #{params[:adult]}" 
-%p= "Released date : #{params[:date]}" 
-%p= "Detail : #{params[:info]}" 

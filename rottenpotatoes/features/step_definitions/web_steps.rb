@@ -116,7 +116,7 @@ Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
   if page.respond_to? :should
     page.should have_xpath('//*', :text => regexp)
   else
-    assert page.has_no_xpath?('//*', :text => regexp)
+    assert page.has_xpath?('//*', :text => regexp)
   end
 end
 
