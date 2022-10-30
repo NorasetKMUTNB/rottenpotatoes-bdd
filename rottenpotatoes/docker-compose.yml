@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  rottenpotato-service: # name service
+    build: 
+      context: .  # path docker file
+      dockerfile: Dockerfile
+    volumes:      # type : bind mount
+      - .:/app/bdd-cucumber
+    stdin_open: true # -i
+    tty:        true # -t
+    container_name: rottenpotato-base
+  
+  rottenpotato-web-service:
+    build: 
+      context: .  # path docker file
+      dockerfile: Dockerfile-web
+    volumes:      # type : bind mount
+      - .:/app/bdd-cucumber
+    container_name: rottenpotato-web
+    ports:
+      - 3000:3000
