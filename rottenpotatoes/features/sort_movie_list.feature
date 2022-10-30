@@ -45,3 +45,5 @@ Scenario: sort movies in increasing order of release date
   And I should see "Chocolat" before "Amelie"
   And I should see "Amelie" before "The Incredibles"
   And I should see "The Incredibles" before "The Help"
+  
+  
