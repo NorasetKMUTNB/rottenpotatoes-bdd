@@ -10,6 +10,7 @@ services:
     tty:        true # -t
     container_name: rottenpotato-base
   
+  # web-service
   rottenpotato-web-service:
     build: 
       context: .  # path docker file
