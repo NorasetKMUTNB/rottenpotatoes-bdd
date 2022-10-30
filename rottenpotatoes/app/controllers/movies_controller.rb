@@ -1,3 +1,7 @@
+require 'net/http'
+require 'uri'
+require 'json'
+
 class MoviesController < ApplicationController
 
   def show
@@ -58,9 +62,37 @@ class MoviesController < ApplicationController
   end
 
   def search_tmdb
-    # hardwire to simulate failure
-    flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb."
-    redirect_to movies_path
+    # tmdb api
+    tmdb_api = URI("https://api.themoviedb.org/3/search/movie?api_key=dc72c1f2b08c877266ab76b491c65f53&query=#{params[:search_terms]}")
+    # get response from tmdb api 
+    tmdb_res = Net::HTTP.get_response(tmdb_api)
+
+    # database as json format
+    tmdb_db = JSON.parse(tmdb_res.body)
+    
+    # check if data input not in database TMDb
+    if tmdb_db["errors"] || tmdb_db["results"] == []
+      flash[:notice] = "'#{params[:search_terms]}' was not found in TMDb."
+      redirect_to movies_path
+
+    # found data input in database TMDb
+    else
+      tmdb_title  = tmdb_db["results"][0]["original_title"]
+      tmdb_rating = tmdb_db["results"][0]["adult"]
+      tmdb_date   = tmdb_db["results"][0]["release_date"]
+      tmdb_info   = tmdb_db["results"][0]["overview"]
+      
+      # send data to .haml
+      @movie = {
+        "title" => tmdb_title,
+        "adult" => tmdb_rating,
+        "date" => tmdb_date,
+        "info" => tmdb_info
+      }
+
+      redirect_to new_movie_path(@movie)
+
+    end
   end
 
 end
