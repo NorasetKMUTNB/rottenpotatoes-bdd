@@ -24,6 +24,7 @@ group :development, :test do
   gem 'cucumber-rails-training-wheels'
   gem 'test-unit'
   gem 'ruby-tmdb3'
+
 end
 
 group :production do
