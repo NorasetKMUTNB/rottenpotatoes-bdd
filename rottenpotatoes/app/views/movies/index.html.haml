@@ -1,4 +1,29 @@
 -#  This file is app/views/movies/index.html.haml
+
+- if current_user
+  %br
+  %h3
+    Username: 
+    = current_user.email
+  %p
+    = link_to "Edit Account", edit_user_registration_path
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    = link_to "Logout", destroy_user_session_path, data: {turbo: "false"}, method: :delete
+
+- else
+  %br
+  %p
+    = link_to "Login", new_user_session_path
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    = link_to "Create Account", new_user_registration_path
+
+  %h3
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    "Please Login if you already have an account"
+
 %h2 All Movies
 
 = form_tag movies_path, :method => :get, :id => 'ratings_form' do
@@ -30,7 +55,6 @@
 %h1 Search TMDb for a movie
 
 = form_tag :action => 'search_tmdb' do
- 
   %label{:for => 'search_terms'} Search Terms
   = text_field_tag 'search_terms'
   = submit_tag 'Search TMDb'
