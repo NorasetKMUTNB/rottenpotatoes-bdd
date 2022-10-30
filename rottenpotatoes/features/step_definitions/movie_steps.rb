@@ -1,4 +1,5 @@
 # Add a declarative step here for populating the DB with movies.
+value = 0
 Given /the following movies exist/ do |movies_table|
   value = 0
   movies_table.hashes.each do |movie|
