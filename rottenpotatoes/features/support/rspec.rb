@@ -1,7 +1,7 @@
 require 'rspec/core'
 
-rspec.configure do |config|
-    config.expect_with :rspec do |exceptions|
-        exceptions.syntax = [:execpt,:should]
+RSpec.configure do |config|
+    config.expect_with :rspec do |expectations|
+      expectations.syntax = [:expect, :should]
     end
 end
