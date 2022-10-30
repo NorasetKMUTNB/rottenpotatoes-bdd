@@ -2,7 +2,7 @@
 FROM ruby:2.6.6
 
 RUN apt-get update -qq && apt-get -y install \
-    build-essential nodejs sqlite3 libsqlite3-dev
+	build-essential nodejs sqlite3 libsqlite3-dev
 
 WORKDIR /app/bdd-cucumber
 # Gemfile to /app
